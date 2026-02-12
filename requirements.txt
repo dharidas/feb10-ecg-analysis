@@ -1,0 +1,10 @@
+pandas<3.0
+numpy
+scipy
+matplotlib
+scikit-learn
+wfdb
+imbalanced-learn
+qiskit
+qiskit-aer
+xgboost
