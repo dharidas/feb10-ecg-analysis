@@ -170,7 +170,7 @@ def process_data(db_path, interval_sec, n_features, sample_features, feature_typ
             [f'signal_{i}' for i in range(sample_features)]
     
     df = pd.DataFrame(all_rows, columns=columns)
-    output_file = f'data/qrs_rr_seg_{feature_type}_30s.csv'
+    output_file = f'data/qrs_rr_seg_{feature_type}_{n_features}_30s.csv'
     # Ensure data directory exists
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     df.to_csv(output_file, index=False)
@@ -179,8 +179,8 @@ def process_data(db_path, interval_sec, n_features, sample_features, feature_typ
 def main():
     default_db_path = 'data/mit-bih-malignant-ventricular-ectopy-database-1.0.0/'
     default_interval_sec = 30
-    default_n_fft = 128
-    default_n_qft = 128
+    default_n_fft = 32
+    default_n_qft = 32
     default_sample_features = 180
     
     parser = argparse.ArgumentParser(description='ECG FFT & QFT Feature Extractor')

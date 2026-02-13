@@ -134,8 +134,8 @@ def run_pipeline(feature_csv, label_column='annotation'):
     evaluate_classifier(clf, X_test_scaled, y_test, threshold=optimal_threshold)
 
 def main():
-    run_pipeline('data/qrs_rr_seg_fft_30s.csv')
-    run_pipeline('data/qrs_rr_seg_qft_30s.csv')
+    run_pipeline('data/qrs_rr_seg_fft_32_30s.csv')
+    run_pipeline('data/qrs_rr_seg_qft_32_30s.csv')
 
 if __name__ == "__main__":
     main()
