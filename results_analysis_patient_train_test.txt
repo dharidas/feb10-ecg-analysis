@@ -216,3 +216,10 @@ Classification Report:
     accuracy                           0.84       350
    macro avg       0.65      0.55      0.56       350
 weighted avg       0.79      0.84      0.80       350
+
+
+--------- With T tests ---------
+
+
+/Users/dharidas/github/feb10-ecg-analysis/.venv/bin/python src/standard_classifier_stat_tests.py --iterations 10
+

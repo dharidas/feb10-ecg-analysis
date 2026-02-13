@@ -86,7 +86,12 @@ def extract_qft_features(segment, n_qft_features):
     qft_state = Statevector(qc)
     # Combine real and imag into a single positive value: abs(real) + abs(imag)
     # This captures both magnitude and phase info as a single positive float.
-    combined_features = [float(np.abs(np.real(v)) + np.abs(np.imag(v))) for v in qft_state.data]
+    # combined_features = [float(np.abs(np.real(v)) + np.abs(np.imag(v))) for v in qft_state.data]
+    # Stacked Polar (Magnitude + Normalized Phase)
+    # combined_features = [float(np.abs(v) + (np.angle(v) + np.pi) / (2 * np.pi)) for v in qft_state.data]
+    # Phase-Modulated Magnitude
+    combined_features = [float(np.abs(v) * (1 + np.sin(np.angle(v)))) for v in qft_state.data]
+
     return combined_features
 
 def get_interval_label(ann_syms):
@@ -179,8 +184,8 @@ def process_data(db_path, interval_sec, n_features, sample_features, feature_typ
 def main():
     default_db_path = 'data/mit-bih-malignant-ventricular-ectopy-database-1.0.0/'
     default_interval_sec = 30
-    default_n_fft = 16
-    default_n_qft = 16
+    default_n_fft = 128
+    default_n_qft = 128
     default_sample_features = 180
     
     parser = argparse.ArgumentParser(description='ECG FFT & QFT Feature Extractor')
