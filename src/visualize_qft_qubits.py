@@ -116,6 +116,15 @@ def main():
     df_summary = pd.DataFrame(summary_results)
     metrics = ['accuracy', 'roc_auc', 'f1', 'precision', 'recall', 'specificity']
 
+    # Print text table
+    print("\n" + "="*80)
+    print(f"{'QUBITS':<8} | {'DIM':<5} | {'ACC':<6} | {'AUC':<6} | {'F1':<6} | {'PREC':<6} | {'RECALL':<6} | {'SPEC':<6}")
+    print("-" * 80)
+    for i, row in df_summary.iterrows():
+        d = dims[i]
+        print(f"{int(row['qubits']):<8} | {d:<5} | {row['accuracy']:.3f} | {row['roc_auc']:.3f} | {row['f1']:.3f} | {row['precision']:.3f} | {row['recall']:.3f} | {row['specificity']:.3f}")
+    print("="*80 + "\n")
+
     plt.figure(figsize=(12, 8))
     for metric in metrics:
         plt.plot(df_summary['qubits'], df_summary[metric], marker='o', label=metric.capitalize())
